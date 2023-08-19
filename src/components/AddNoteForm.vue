@@ -17,7 +17,9 @@
      </td>
     </tr>
   </table>
+  <br>
   </div>
+    <h2>Добавить новую заметку</h2>
     Тема
     <p>
       <input v-model="newCat">
@@ -120,9 +122,13 @@ width: 50px;
 }
 tr{
   height: 50px;
+  border: 1px solid black;
 }
 td{
   width: 400px;
+  border: 1px solid black;
+  text-align: center;
+  vertical-align: top;
 }
 textarea{
   width: 400px;
