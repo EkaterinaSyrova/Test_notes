@@ -2,16 +2,20 @@
   <div id="app">
 <div>
   <table>
-    <tr> <td><meta itemprop="image" content="http://your-link.png"></td> <td></td><td> </td></tr>
+    <tr><td>Тема</td><td>Основной текст</td><td>Картинка</td><td>Удалить заметку</td></tr>
     <tr>
       <td><p v-for="(cat,n) in cats">
         <span class="cat">{{ cat }}</span>
       </p></td>
-      <td></td>
       <td><p  v-for="(dog,n) in dogs">
-        <span class="dog">{{ dog }}</span>
-        &nbsp;&nbsp;<button @click="removeDogCat(n)">Удалить</button>
+        <span class="dog">{{ dog }}</span></p></td>
+      <td><p v-for="(pic,n) in pics">
+        <span class="pic">{{ pic }}</span>
       </p></td>
+      <td>
+       <p  v-for="(dog,n) in dogs">
+          <button id="remove" @click="removeDogCat(n)">Удалить</button></p>
+     </td>
     </tr>
   </table>
   </div>
@@ -22,6 +26,10 @@
     Основной текст
     <p>
     <textarea v-model="newDog"></textarea>
+    </p>
+    Картинка
+    <p>
+      <input v-model="newPic">
     </p>
     <button @click="addDogCat">Добавить заметку</button>
   </div>
@@ -36,7 +44,8 @@ export default {
       newCat: null,
       dogs: [],
       newDog: null,
-      source:{}
+      pics:[],
+      newPic: null
     }
   },
   mounted() {
@@ -54,25 +63,37 @@ export default {
         localStorage.removeItem('dogs');
       }
     }
+    if (localStorage.getItem('pics')) {
+      try {
+        this.pics = JSON.parse(localStorage.getItem('pics'));
+      } catch(e) {
+        localStorage.removeItem('pics');
+      }
+    }
   },
   methods: {
     addDogCat() {
       // ensure they actually typed something
-      if (!this.newDog && !this.newCat) {
+      if (!this.newDog && !this.newCat && !this.newPic) {
         return;
       }
       this.dogs.push(this.newDog);
       this.newDog = '';
       this.cats.push(this.newCat);
       this.newCat = '';
+      this.pics.push(this.newPic);
+      this.newPic = '';
       this.saveDogs();
       this.saveCats();
+      this.savePics();
     },
     removeDogCat(x) {
       this.dogs.splice(x, 1);
       this.cats.splice(x, 1);
+      this.pics.splice(x, 1);
       this.saveDogs();
       this.saveCats();
+      this.savePics();
     },
     saveDogs() {
       const parsed = JSON.stringify(this.dogs);
@@ -81,6 +102,10 @@ export default {
     saveCats() {
       const parsed = JSON.stringify(this.cats);
       localStorage.setItem('cats', parsed);
+    },
+    savePics() {
+      const parsed = JSON.stringify(this.pics);
+      localStorage.setItem('pics', parsed);
     }
 
   }
@@ -94,6 +119,10 @@ input {
 textarea{
   width: 400px;
   height: 100px;
+}
+.remove{
+  margin-left: auto;
+  margin-right: 0;
 }
 .form-fields {
   margin-right: 50px;
