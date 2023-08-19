@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <h2>Заметки</h2>
-
-
   </div>
 </template>
 

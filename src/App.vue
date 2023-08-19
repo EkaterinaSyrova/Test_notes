@@ -6,13 +6,13 @@ import AddNoteForm from './components/AddNoteForm.vue'
 <template>
   <header>
     <div class="wrapper">
-      <NoteList msg="You did it!" />
+      <NoteList />
     </div>
   </header>
 
   <main>
     <div class="wrapper">
-      <AddNoteForm  msg="You did it!" />
+      <AddNoteForm />
     </div>
   </main>
 </template>

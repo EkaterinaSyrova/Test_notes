@@ -1,24 +1,30 @@
 <template>
   <div id="app">
-<div>
-  <table>
-    <tr><td>Тема</td><td>Основной текст</td><td>Картинка</td><td>Удалить заметку</td></tr>
-    <tr>
-      <td><p v-for="(cat,n) in cats">
-        <span class="cat">{{ cat }}</span>
-      </p></td>
-      <td><p  v-for="(dog,n) in dogs">
-        <span class="dog">{{ dog }}</span></p></td>
-      <td>  <img v-for="(pic,n) in pics"
-                 :src="pic"/></td>
-      <td>
-       <p  v-for="(dog,n) in dogs">
-          <button id="remove" @click="removeDogCat(n)">Удалить</button></p>
-     </td>
-    </tr>
-  </table>
-  <br>
-  </div>
+    <div>
+      <table>
+        <tr><td>Тема</td><td>Основной текст</td><td>Картинка</td><td>Удалить заметку</td></tr>
+        <tr>
+          <td>
+            <p v-for="(cat,n) in cats">
+            <span class="cat">{{ cat }}</span></p>
+          </td>
+          <td>
+            <p  v-for="(dog,n) in dogs">
+            <span class="dog">{{ dog }}</span>></p>
+          </td>
+          <td>
+            <p v-for="(pic,n) in pics">
+            <img :src="pic"/></p>
+          </td>
+          <td>
+            <p  v-for="(dog,n) in dogs">
+              <button id="remove" @click="removeDogCat(n)">Удалить</button>
+       </p>
+          </td>
+        </tr>
+      </table>
+      <br>
+    </div>
     <h2>Добавить новую заметку</h2>
     Тема
     <p>
@@ -26,7 +32,7 @@
     </p>
     Основной текст
     <p>
-    <textarea v-model="newDog"></textarea>
+      <textarea v-model="newDog"></textarea>
     </p>
     Картинка
     <p>
@@ -39,8 +45,8 @@
 <script>
 export default {
   data() {
-
     return {
+
       cats: [],
       newCat: null,
       dogs: [],
@@ -118,10 +124,13 @@ input {
   width: 400px;
 }
 img{
-width: 50px;
+  width: 50px;
 }
 tr{
-  height: 50px;
+  height: 100px;
+  border: 1px solid black;
+}
+table{
   border: 1px solid black;
 }
 td{
@@ -143,5 +152,3 @@ textarea{
   margin-bottom: 50px;
 }
 </style>
-<script setup>
-</script>
