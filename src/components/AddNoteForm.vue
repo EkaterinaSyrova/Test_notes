@@ -9,9 +9,8 @@
       </p></td>
       <td><p  v-for="(dog,n) in dogs">
         <span class="dog">{{ dog }}</span></p></td>
-      <td><p v-for="(pic,n) in pics">
-        <span class="pic">{{ pic }}</span>
-      </p></td>
+      <td>  <img v-for="(pic,n) in pics"
+                 :src="pic"/></td>
       <td>
        <p  v-for="(dog,n) in dogs">
           <button id="remove" @click="removeDogCat(n)">Удалить</button></p>
@@ -114,6 +113,15 @@ export default {
 
 <style lang="scss" scoped>
 input {
+  width: 400px;
+}
+img{
+width: 50px;
+}
+tr{
+  height: 50px;
+}
+td{
   width: 400px;
 }
 textarea{
