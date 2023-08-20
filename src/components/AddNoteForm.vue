@@ -1,4 +1,13 @@
 <template>
+  <NoteList v-for="cat in cats"
+            :cat="cat">
+  </NoteList>
+  <NoteList v-for="dog in dogs"
+            :dog="dog">
+  </NoteList>
+  <NoteList v-for="pic in pics"
+            :pic="pic">
+  </NoteList>
   <div id="app">
     <div>
       <table>
@@ -6,20 +15,20 @@
         <tr>
           <td>
             <p v-for="(cat,n) in cats">
-            <span class="cat">{{ cat }}</span></p>
+              <span class="cat">{{ cat }}</span></p>
           </td>
           <td>
             <p  v-for="(dog,n) in dogs">
-            <span class="dog">{{ dog }}</span>></p>
+              <span class="dog">{{ dog }}</span>></p>
           </td>
           <td>
             <p v-for="(pic,n) in pics">
-            <img :src="pic"/></p>
+              <img :src="pic"/></p>
           </td>
           <td>
             <p  v-for="(dog,n) in dogs">
               <button id="remove" @click="removeDogCat(n)">Удалить</button>
-       </p>
+            </p>
           </td>
         </tr>
       </table>
@@ -43,10 +52,12 @@
 </template>
 
 <script>
+import NoteList from './NoteList.vue'
+
 export default {
+  components: {NoteList},
   data() {
     return {
-
       cats: [],
       newCat: null,
       dogs: [],
